@@ -19,6 +19,9 @@ app.use(cors());
 // Connexion à la base de données MongoDB
 mongoose.connect("mongodb://localhost:27017/listaholic");
 
+// Importer les routers
+const userRouter = require("./routes/user");
+
 // Créer une route GET d'accueil
 app.get("/", (req, res) => {
   console.log("Route d'accueil atteinte");
@@ -30,6 +33,9 @@ app.get("/test", (req, res) => {
   console.log("Route test atteinte");
   res.status(200).json({ message: "Test réussi" });
 });
+
+// Utiliser les routers avec des chemins spécifiques
+app.use("/user", userRouter);
 
 // Créer une route pour gérer toutes les routes inconnues
 app.all("*", (req, res) => {
