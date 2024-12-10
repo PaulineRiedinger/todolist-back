@@ -1,4 +1,4 @@
-// Importer express et mongoose
+// Importer Express et Mongoose
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -7,7 +7,7 @@ const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
 
-// Importer du modèle User
+// Importer modèle User
 const User = require("../models/User");
 
 // Initialisation du routeur pour gérer les routes liées aux utilisateurs
@@ -47,7 +47,6 @@ router.post("/signup", async (req, res) => {
 
     // Génération du salt et hashage du mdp
     const salt = uid2(16);
-    s;
     const hash = SHA256(password + salt).toString(encBase64);
 
     // Génération du token
