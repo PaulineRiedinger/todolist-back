@@ -9,17 +9,17 @@ const router = express.Router();
 
 // CRUD (Create, Read, Update, Delete)
 
-// Route POST /tasks pour ajouter une tâche
+// Route POST /tasks pour ajouter tâche
 router.post("/tasks", async (req, res) => {
   try {
     const { task, detail, completed, category } = req.body;
 
-    // Vérif de la présence de la tâche
+    // Vérif présence de la tâche
     if (!task) {
       return res.status(400).json({ message: "La tâche est requise" });
     }
 
-    // Créer nouvelle tâche
+    // Créer une nouvelle tâche
     const newTask = new Task({
       task,
       detail,
@@ -27,12 +27,13 @@ router.post("/tasks", async (req, res) => {
       category,
     });
 
-    // Sauvegarder tâche dans BDD
+    // Sauvegarder la tâche dans la base de données
     await newTask.save();
 
-    // Répondre tâche créée
+    // Répondre avec tâche créée
     res.status(201).json(newTask);
   } catch (error) {
+    console.error("Erreur lors de la création de la tâche :", error); // Afficher erreur
     res
       .status(400)
       .json({ message: "Erreur lors de la création de la tâche", error });

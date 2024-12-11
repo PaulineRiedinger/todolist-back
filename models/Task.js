@@ -1,13 +1,10 @@
-// Importer mongoose
 const mongoose = require("mongoose");
 
-// Déclarer modèle mongoose Task pour créer la collection dans la BDD
-const Task = mongoose.model(
-  "Task",
+const taskSchema = new mongoose.Schema(
   {
     task: {
       type: String,
-      required: true, // Titre obligatoire
+      required: true, // Tâche obligatoire
     },
     detail: {
       type: String,
@@ -15,7 +12,7 @@ const Task = mongoose.model(
     },
     completed: {
       type: Boolean,
-      default: false, // Tâche = par défaut non terminée
+      default: false, // Tâche non terminée par défaut
     },
     category: {
       type: String,
@@ -27,5 +24,8 @@ const Task = mongoose.model(
   }
 );
 
-// Exporter le modèle Task
+// Créer modèle à partir du schéma
+const Task = mongoose.model("Task", taskSchema);
+
+// Exporter modèle
 module.exports = Task;
