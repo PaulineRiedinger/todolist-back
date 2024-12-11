@@ -54,6 +54,7 @@ app.all("*", (req, res) => {
 });
 
 // Faire tourner le serveur
-app.listen(3000, () => {
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
   console.log(`Serveur démarré 🗒️`);
 });
